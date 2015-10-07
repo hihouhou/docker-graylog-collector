@@ -10,7 +10,6 @@ FROM debian:latest
 MAINTAINER hihouhou < hihouhou@hihouhou.com >
 
 ENV COLLECTOR_VERSION graylog-collector-0.4.1
-WORKDIR /${COLLECTOR_VERSION}
 
 # Update & install packages for graylog
 RUN apt-get update && \
@@ -21,10 +20,6 @@ RUN wget https://packages.graylog2.org/releases/graylog-collector/${COLLECTOR_VE
 #Configure graylog
 ADD collector.conf /${COLLECTOR_VERSION}/config/
 
+WORKDIR /${COLLECTOR_VERSION}
 
-#Add link for binary
-RUN ln -s /${COLLECTOR_VERSION}/bin/graylog-collector /usr/bin/graylog-collector && ls -l /usr/bin/graylog-collector
-
-#EXPOSE 12900
-
-CMD ["graylog-collector", "run", "-f", "config/collector.conf"]
+CMD ["bin/graylog-collector", "run", "-f", "config/collector.conf"]
