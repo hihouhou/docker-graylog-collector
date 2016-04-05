@@ -9,7 +9,7 @@ FROM debian:latest
 
 MAINTAINER hihouhou < hihouhou@hihouhou.com >
 
-ENV COLLECTOR_VERSION graylog-collector-0.4.1
+ENV COLLECTOR_VERSION graylog-collector-0.4.2
 
 # Update & install packages for graylog
 RUN apt-get update && \
